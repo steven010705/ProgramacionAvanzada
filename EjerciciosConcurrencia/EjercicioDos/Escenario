@@ -1,0 +1,19 @@
+// Clase que implementa Runnable, se puede compartir entre varios hilos
+class Contador implements Runnable {
+    private int contador = 0;
+    public void run() {
+        for (int i = 0; i < 1000; i++) {
+        contador++; // Incrementa el Contador,incremento no sincronizado
+        }
+        System.out.println("Contador final: " + contador);
+    }
+}
+public class Principal {
+    public static void main(String[] args) {
+        Contador tarea = new Contador(); // Tarea compartida
+        Thread t1 = new Thread(tarea); // Hilo 1 usando misma instancia
+        Thread t2 = new Thread(tarea); // Hilo 2 usando misma instancia
+        t1.start();
+        t2.start();
+    }
+}
