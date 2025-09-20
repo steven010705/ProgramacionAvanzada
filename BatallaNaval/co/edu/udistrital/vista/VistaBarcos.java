@@ -16,7 +16,7 @@ public class VistaBarcos extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createTitledBorder("Barcos disponibles"));
 
-        // Definir los tipos de barcos, cantidad y colores
+        // Definición de los tipos de barcos, cantidad y colores
         barcosCantidad.put("Portaaviones", 1);
         barcosTamanio.put("Portaaviones", 6);
         barcosColor.put("Portaaviones", new Color(0, 51, 153));
