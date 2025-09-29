@@ -6,10 +6,18 @@ import co.edu.udistrital.modelo.ServicioJugador;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+* Clase InicioJuego
+* @author Steven
+* @version 1.0
+*/
 public class InicioJuego {
 
     private ServicioJugador servicioJugador;
 
+    /**
+    * Inicialización de atributos
+    */
     public InicioJuego() {
         servicioJugador = new ServicioJugador();
 
