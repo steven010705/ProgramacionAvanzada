@@ -2,11 +2,19 @@ package co.edu.udistrital.modelo;
 
 import java.util.*;
 
+/**
+* Clase Maquina
+* @author Steven
+* @version 1.0
+*/
 public class Maquina {
     private List<int[]> movimientosRealizados;
     private Queue<int[]> objetivos; // Casillas a atacar alrededor de un acierto
     private Random random;
 
+    /**
+    * Inicializa los atributos
+    */
     public Maquina() {
         movimientosRealizados = new ArrayList<>();
         objetivos = new LinkedList<>();
@@ -14,8 +22,8 @@ public class Maquina {
     }
 
     /**
-     * Decide el próximo movimiento de la máquina.
-     * Si hay objetivos pendientes (alrededor de un acierto), los ataca primero.
+     * Decide el próximo movimiento de la máquina
+     * Si hay objetivos alrededor de un acierto, los ataca primero
      * @param filas número de filas del tablero
      * @param columnas número de columnas del tablero
      * @return un arreglo [x, y] con la posición a atacar
@@ -43,7 +51,9 @@ public class Maquina {
 
     /**
      * Llama este método cuando la máquina acierta un barco,
-     * para agregar las casillas adyacentes como próximos objetivos.
+     * para agregar las casillas adyacentes como próximos objetivos
+     * @param filas número de filas del tablero
+     * @param columnas número de columnas del tablero
      */
     public void agregarObjetivos(int x, int y, int filas, int columnas) {
         int[][] direcciones = {{-1,0},{1,0},{0,-1},{0,1}};
@@ -56,6 +66,11 @@ public class Maquina {
         }
     }
 
+    /**
+    * Valida si hay un objetivo acertados
+    * @param x coordenada horizontal de la casilla
+    * @param y coordenada vertical de la casilla
+    */
     private boolean yaAtacado(int x, int y) {
         for (int[] mov : movimientosRealizados) {
             if (mov[0] == x && mov[1] == y) {
@@ -65,10 +80,20 @@ public class Maquina {
         return false;
     }
 
+    /**
+    * Valida si el tiro está dentro del tablero
+    * @param filas número de filas del tablero
+    * @param columnas número de columnas del tablero
+    * @param x coordenada horizontal de la casilla
+    * @param y coordenada vertical de la casilla
+    */
     private boolean dentroTablero(int x, int y, int filas, int columnas) {
         return x >= 0 && x < filas && y >= 0 && y < columnas;
     }
 
+    /**
+    * Reestablece las decisiones de la máquina
+    */
     public void reiniciarMovimientos() {
         movimientosRealizados.clear();
         objetivos.clear();
