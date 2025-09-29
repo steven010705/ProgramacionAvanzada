@@ -5,13 +5,23 @@ import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+* Clase VistaTablero
+* @author Steven
+* @version 1.0
+*/
 public class VistaBarcos extends JPanel {
 
-    // Mapa para almacenar los barcos y su cantidad
+    /** 
+    * Mapa para almacenar los barcos y su cantidad
+    */
     private final Map<String, Integer> barcosCantidad = new LinkedHashMap<>();
     private final Map<String, Integer> barcosTamanio = new LinkedHashMap<>();
     private final Map<String, Color> barcosColor = new LinkedHashMap<>();
 
+    /**
+    * Inicialización de atributos
+    */
     public VistaBarcos() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createTitledBorder("Barcos disponibles"));
@@ -44,7 +54,12 @@ public class VistaBarcos extends JPanel {
         }
     }
 
-    // Panel visual para cada barco
+    /** 
+    * Creación de panel para cada barco
+    * @param nombre cadena de texto
+    * @param longitud cantidad de casillas del barco
+    * @param color color del barco
+    */
     private JPanel crearBarcoPanel(String nombre, int longitud, Color color) {
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout(FlowLayout.LEFT));
