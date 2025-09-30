@@ -3,7 +3,15 @@ package co.edu.udistrital.modelo;
 import java.io.*;
 import java.util.*;
 
+/**
+* Clase MigrarJugadores
+* @author Steven
+* @version 1.0
+*/
 public class MigrarJugadores {
+    /**
+    * Maneja los errores que puede presentar la migración de jugadores al archivo
+    */
     public static void main(String[] args) {
         File archivo = new File("jugadores.txt");
         List<String> lineas = new ArrayList<>();
@@ -13,7 +21,7 @@ public class MigrarJugadores {
             while ((linea = reader.readLine()) != null) {
                 String[] datos = linea.split(",");
                 if (datos.length < 4) {
-                    // Si faltan victorias o derrotas, agrégalas como 0
+                    // Si faltan victorias o derrotas, se agregan como 0
                     StringBuilder nuevaLinea = new StringBuilder(linea);
                     for (int i = datos.length; i < 4; i++) {
                         nuevaLinea.append(",0");
