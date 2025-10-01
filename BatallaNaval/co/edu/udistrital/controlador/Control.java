@@ -6,12 +6,21 @@ import co.edu.udistrital.vista.VistaTablero;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+* Clase Control
+* @author Steven
+* @version 1.0
+*/
 public class Control {
     private Partida partida;
     private Jugador jugador;
     private Maquina maquina;
     private VistaTablero vista;
 
+    /**
+    * Instancia los objetos e llama los métodos necesarios para el funcionamiento del juego
+    * @param jugador usuario que juega
+    */
     public Control(Jugador jugador) {
         this.jugador = jugador;
         this.maquina = new Maquina();
@@ -24,8 +33,11 @@ public class Control {
         vista.addListenerTableroJugador(new ListenerTableroJugador());
         vista.addListenerTableroMaquina(new ListenerTableroMaquina());
     }
-
-    // Listener para cuando el jugador ataca el tablero de la máquina
+ 
+    /**
+    * Listener para cuando el jugador ataca el tablero de la máquina
+    * @param e evento que ocurre tras la acción
+    */
     private class ListenerTableroMaquina implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -47,8 +59,10 @@ public class Control {
             }
         }
     }
-
-    // Listener para el tablero del jugador (puedes usarlo para ubicar barcos si lo deseas)
+    
+    /**
+    * Clase interna Listener para el tablero del jugador
+    */
     private class ListenerTableroJugador implements ActionListener {
         private int barcoActual = 0;
         private final int[] tamaniosBarcos = {6, 4, 4, 3, 3, 3, 2, 2, 2, 2}; // Ejemplo
@@ -83,7 +97,9 @@ public class Control {
         }
     }
 
-    // Lógica para el turno de la máquina
+    /** 
+    * Lógica para el turno de la máquina
+    */
     private void turnoMaquina() {
         int[] mov = maquina.decidirMovimiento(10, 10);
         boolean acierto = partida.getTableroJugador().recibirAtaque(mov[0], mov[1]);
@@ -97,11 +113,14 @@ public class Control {
             }
         }
         if (verificarFinDePartida()) {
-            // Puedes mostrar mensaje de victoria/derrota aquí
+            // Mostrar mensaje de victoria/derrota aquí
         }
     }
 
-    // Verifica si la partida terminó
+    /**
+    * Verifica si la partida terminó
+    * @return booleano que indica quien ganó la partida
+    */
     private boolean verificarFinDePartida() {
         if (partida.getTableroMaquina() != null && partida.getTableroJugador() != null) {
             if (partida.getTableroMaquina().getTablero() != null && partida.getTableroJugador().getTablero() != null) {
@@ -126,7 +145,11 @@ public class Control {
         return false;
     }
 
-    // Verifica si quedan barcos en el tablero
+    /** 
+    * Verifica si quedan barcos en el tablero
+    * @param tablero lugar del juego
+    * @return booleano que indica si quedan barcos en el tablero de juego
+    */
     private boolean hayBarcos(Tablero tablero) {
         String[][] matriz = tablero.getTablero();
         for (int i = 0; i < tablero.getFilas(); i++) {
