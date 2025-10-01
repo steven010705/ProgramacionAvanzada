@@ -5,7 +5,7 @@ import co.edu.udistrital.vista.InicioJuego;
 /**
 * Clase Main
 * @author Steven
-* @version 1.0
+* @version 2.0
 */
 public class Main {
     /** 

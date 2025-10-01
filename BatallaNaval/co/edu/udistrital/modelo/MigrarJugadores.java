@@ -6,7 +6,7 @@ import java.util.*;
 /**
 * Clase MigrarJugadores
 * @author Steven
-* @version 1.0
+* @version 2.0
 */
 public class MigrarJugadores {
     /**

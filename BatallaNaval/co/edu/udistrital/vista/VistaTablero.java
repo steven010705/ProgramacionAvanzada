@@ -7,22 +7,33 @@ import java.awt.event.ActionListener;
 /**
 * Clase VistaTablero
 * @author Steven
-* @version 1.0
+* @version 3.0
 */
 public class VistaTablero extends JFrame {
     private JButton[][] tableroJugador;
     private JButton[][] tableroMaquina;
     private JPanel panelJugador;
     private JPanel panelMaquina;
+    private JLabel etiquetaTiempo; // Nuevo JLabel para el cronómetro
 
 
-    /** 
-    * Inicialización de atributos
+    /**
+    * Inicialización de GUI
     */
     public VistaTablero() {
         setTitle("Batalla Naval");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(1, 2, 20, 0));
+        setLayout(new BorderLayout()); // Cambiado a BorderLayout para añadir el cronómetro
+
+        // Panel superior para el cronómetro
+        JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        etiquetaTiempo = new JLabel("Tiempo: 0s");
+        etiquetaTiempo.setFont(new Font("Arial", Font.BOLD, 18));
+        panelSuperior.add(etiquetaTiempo);
+        add(panelSuperior, BorderLayout.NORTH);
+
+        // Panel central para los tableros
+        JPanel panelTableros = new JPanel(new GridLayout(1, 2, 20, 0));
 
         panelJugador = new JPanel(new GridLayout(10, 10));
         panelMaquina = new JPanel(new GridLayout(10, 10));
@@ -32,15 +43,17 @@ public class VistaTablero extends JFrame {
         inicializarTablero(panelJugador, tableroJugador, true);
         inicializarTablero(panelMaquina, tableroMaquina, false);
 
-        add(crearPanelConTitulo(panelJugador, "Tu Tablero"));
-        add(crearPanelConTitulo(panelMaquina, "Tablero Máquina"));
+        panelTableros.add(crearPanelConTitulo(panelJugador, "Tu Tablero"));
+        panelTableros.add(crearPanelConTitulo(panelMaquina, "Tablero Máquina"));
+
+        add(panelTableros, BorderLayout.CENTER); // Añadir el panel de tableros al centro
 
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-     /** 
+     /**
      * Inicialización del tablero
      * @param panel contenedor del tablero
      * @param tablero matriz de botones
@@ -59,7 +72,7 @@ public class VistaTablero extends JFrame {
         }
     }
 
-    /** 
+    /**
     * Agrega título
     * @param panel contenedor del titulo
     * @param titulo cadena de texto
@@ -71,8 +84,8 @@ public class VistaTablero extends JFrame {
         return contenedor;
     }
 
-    /** 
-    * Métodos para que el controlador pueda añadir listeners 
+    /**
+    * Métodos para que el controlador pueda añadir listeners
     */
     public void addListenerTableroJugador(ActionListener listener) {
         for (int i = 0; i < 10; i++)
@@ -99,5 +112,10 @@ public class VistaTablero extends JFrame {
 
     public void marcarAtaqueMaquina(int x, int y, boolean acierto) {
         tableroJugador[x][y].setBackground(acierto ? Color.RED : Color.WHITE);
+    }
+
+    // Getter para el JLabel del tiempo
+    public JLabel getEtiquetaTiempo() {
+        return etiquetaTiempo;
     }
 }

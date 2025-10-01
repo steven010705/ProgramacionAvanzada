@@ -6,7 +6,7 @@ import java.util.List;
 /**
 * Clase Jugador
 * @author Steven
-* @version 1.0
+* @version 2.0
 */
 public class Jugador {
     private String usuario;
