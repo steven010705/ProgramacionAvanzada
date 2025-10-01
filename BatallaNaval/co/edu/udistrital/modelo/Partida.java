@@ -6,7 +6,7 @@ import java.util.*;
 /**
 * Clase Partida
 * @author Steven
-* @version 3.0
+* @version 1.0
 */
 public class Partida {
     private Tablero tableroJugador;
@@ -23,27 +23,7 @@ public class Partida {
     public void iniciarPartida(Jugador jugador1, Maquina jugador2) {
         tableroJugador = new Tablero(10, 10);
         tableroMaquina = new Tablero(10, 10);
-        // Inicializar los barcos del jugador y la máquina
-        this.barcosJugador = jugador1.getBarcos();
-        this.barcosMaquina = crearBarcosFijosParaMaquina();
-    }
-
-    /**
-    * Crea barcos fijos para la máquina, similar al jugador
-    */
-     private List<Barco> crearBarcosFijosParaMaquina() {
-        List<Barco> barcos = new ArrayList<>();
-        barcos.add(new Barco("Portaaviones", 6, true));
-        barcos.add(new Barco("Acorazado", 4, false));
-        barcos.add(new Barco("Acorazado", 4, false));
-        barcos.add(new Barco("Submarino", 3, true));
-        barcos.add(new Barco("Submarino", 3, true));
-        barcos.add(new Barco("Submarino", 3, true));
-        barcos.add(new Barco("Fragata", 2, false));
-        barcos.add(new Barco("Fragata", 2, false));
-        barcos.add(new Barco("Fragata", 2, false));
-        barcos.add(new Barco("Fragata", 2, false));
-        return barcos;
+        // Pendiente ubicar los barcos de ambos jugadores (aleatoriamente o por selección)
     }
 
     /**
@@ -55,12 +35,16 @@ public class Partida {
         boolean turnoJugador = true;
         while (!juegoTerminado) {
             if (turnoJugador) {
-                // Vacío debido que se gestiona en el controlador
+                // Se espera movimiento del jugador (se gestiona por el controlador)
             } else {
                 int[] mov = jugador2.decidirMovimiento(10, 10);
                 boolean acierto = tableroJugador.recibirAtaque(mov[0], mov[1]);
                 if (acierto) {
                     jugador2.agregarObjetivos(mov[0], mov[1], 10, 10);
+                }
+                if (verificarDerrota(tableroJugador)) {
+                    derrota(jugador1);
+                    break;
                 }
             }
             turnoJugador = !turnoJugador;
@@ -77,7 +61,11 @@ public class Partida {
     public boolean movimientos(Jugador jugador, int x, int y) {
         // El jugador ataca la máquina
         boolean acierto = tableroMaquina.recibirAtaque(x, y);
-        // Si acierta, se notifica al controlador para actualizar la vista
+        // Si acierta, se puede notificar al controlador para actualizar la vista (implementar)
+        if (verificarDerrota(tableroMaquina)) {
+            victoria(jugador);
+            juegoTerminado = true;
+        }
         return acierto;
     }
 
@@ -87,6 +75,7 @@ public class Partida {
     */
     public void victoria(Jugador jugador) {
         juegoTerminado = true;
+        // Pendiente guardar el resultado o notificar al controlador
         guardarResultados(jugador, true);
     }
 
@@ -104,7 +93,7 @@ public class Partida {
     * @param tablero lugar del juego
     * @return valor que determina la existencia o no de barcos
     */
-    public boolean verificarDerrota(Tablero tablero) { // Cambiado a public para que el controlador pueda usarlo
+    private boolean verificarDerrota(Tablero tablero) {
         String[][] matriz = tablero.getTablero();
         for (int i = 0; i < tablero.getFilas(); i++) {
             for (int j = 0; j < tablero.getColumnas(); j++) {
@@ -123,13 +112,10 @@ public class Partida {
     * @return devuelve el barco correspondiente o "agua" (null)
     */
     public Barco obtenerBarcoEnPosicionMaquina(int x, int y) {
-        if (barcosMaquina == null) return null; // Protección
         for (Barco barco : barcosMaquina) {
-            if (barco.getPosiciones() != null) { // Protección
-                for (int[] pos : barco.getPosiciones()) {
-                    if (pos[0] == x && pos[1] == y) {
-                        return barco;
-                    }
+            for (int[] pos : barco.getPosiciones()) {
+                if (pos[0] == x && pos[1] == y) {
+                    return barco;
                 }
             }
         }
@@ -143,13 +129,10 @@ public class Partida {
     * @return devuelve el barco correspondiente o "agua" (null)
     */
     public Barco obtenerBarcoEnPosicionJugador(int x, int y) {
-        if (barcosJugador == null) return null; // Protección
         for (Barco barco : barcosJugador) {
-            if (barco.getPosiciones() != null) { // Protección
-                for (int[] pos : barco.getPosiciones()) {
-                    if (pos[0] == x && pos[1] == y) {
-                        return barco;
-                    }
+            for (int[] pos : barco.getPosiciones()) {
+                if (pos[0] == x && pos[1] == y) {
+                    return barco;
                 }
             }
         }
@@ -204,21 +187,5 @@ public class Partida {
 
     public Tablero getTableroMaquina() {
         return tableroMaquina;
-    }
-
-    public boolean isJuegoTerminado() {
-        return juegoTerminado;
-    }
-
-    public void setJuegoTerminado(boolean juegoTerminado) {
-        this.juegoTerminado = juegoTerminado;
-    }
-
-    public List<Barco> getBarcosJugador() {
-        return barcosJugador;
-    }
-
-    public List<Barco> getBarcosMaquina() {
-        return barcosMaquina;
     }
 }

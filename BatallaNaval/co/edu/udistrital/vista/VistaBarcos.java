@@ -8,17 +8,19 @@ import java.util.Map;
 /**
 * Clase VistaTablero
 * @author Steven
-* @version 2.0
+* @version 1.0
 */
 public class VistaBarcos extends JPanel {
 
-    // Mapa para almacenar los barcos y su cantidad
+    /** 
+    * Mapa para almacenar los barcos y su cantidad
+    */
     private final Map<String, Integer> barcosCantidad = new LinkedHashMap<>();
     private final Map<String, Integer> barcosTamanio = new LinkedHashMap<>();
     private final Map<String, Color> barcosColor = new LinkedHashMap<>();
 
     /**
-    * Inicialización de GUI
+    * Inicialización de atributos
     */
     public VistaBarcos() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

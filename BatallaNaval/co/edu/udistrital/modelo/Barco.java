@@ -5,7 +5,7 @@ import java.util.List;
 /**
 * Clase Barco
 * @author Steven
-* @version 2.0
+* @version 1.0
 */
 public class Barco {
     private String tipo;

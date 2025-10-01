@@ -9,14 +9,14 @@ import java.awt.*;
 /**
 * Clase InicioJuego
 * @author Steven
-* @version 2.0
+* @version 1.0
 */
 public class InicioJuego {
 
     private ServicioJugador servicioJugador;
 
     /**
-    * Inicialización de GUI
+    * Inicialización de atributos
     */
     public InicioJuego() {
         servicioJugador = new ServicioJugador();
