@@ -3,7 +3,7 @@ package co.edu.udistrital.modelo;
 /**
 * Clase Tablero
 * @author Steven
-* @version 1.0
+* @version 2.0
 */
 public class Tablero {
     private final int filas;

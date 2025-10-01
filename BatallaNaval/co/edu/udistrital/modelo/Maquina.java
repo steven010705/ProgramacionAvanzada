@@ -5,7 +5,7 @@ import java.util.*;
 /**
 * Clase Maquina
 * @author Steven
-* @version 1.0
+* @version 2.0
 */
 public class Maquina {
     private List<int[]> movimientosRealizados;

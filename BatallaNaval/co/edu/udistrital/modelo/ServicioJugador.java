@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
 * Clase ServicioJugador
 * @author Steven
-* @version 1.0
+* @version 2.0
 */
 public class ServicioJugador {
     private static final String ARCHIVO_USUARIOS = "jugadores.txt";
