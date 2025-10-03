@@ -1,0 +1,21 @@
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>BatallaNaval.jar</jar>
+  <outfile>BatallaNaval.exe</outfile>
+  <errTitle>Batalla Naval</errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>https://adoptium.net/</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+
+  <jre>
+    <path>jre</path>
+    <minVersion>21.0.0</minVersion>
+    <runtimeBits>64</runtimeBits>
+    <bundledJreAsFallback>true</bundledJreAsFallback>
+  </jre>
+</launch4jConfig>
