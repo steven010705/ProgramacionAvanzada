@@ -1,0 +1,13 @@
+{
+    "redhat.telemetry.enabled": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "python.createEnvironment.trigger": "off",
+
+    "java.project.referencedLibraries": [
+    "/home/bethods/Documents/VsCode/ProgramacionAvanzada/BatallaNaval/lib/junit-jupiter-engine-5.9.3.jar",
+    "/home/bethods/Documents/VsCode/ProgramacionAvanzada/BatallaNaval/lib/junit-jupiter-api-5.9.3.jar",
+    "/home/bethods/Documents/VsCode/ProgramacionAvanzada/BatallaNaval/lib/apiguardian-api-1.1.2.jar"
+    ]
+}
+
