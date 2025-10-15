@@ -98,4 +98,8 @@ public class Maquina {
         movimientosRealizados.clear();
         objetivos.clear();
     }
+
+    public Queue<int[]> getObjetivos() {
+    return objetivos;
+}
 }

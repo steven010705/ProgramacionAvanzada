@@ -31,6 +31,10 @@ public class Cronometro implements Runnable {
         this.corriendo = false;
     }
 
+    public boolean isRunning() {
+    return corriendo;
+}
+
     @Override
     public void run() {
         while (corriendo) {
